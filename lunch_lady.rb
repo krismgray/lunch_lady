@@ -68,12 +68,13 @@ def second_side_dish
       end
 end
 
-
 def order
-  @order.each do |key, index|
-    arr = [] << key[:cost]
-
-  end
+  sum = 0.0
+  @order.each do |key|
+    sum += key[:cost]
+    end
+    puts "Your total is: $#{sum.round(2)}"
+    main_menu
 end
 
 main_menu
