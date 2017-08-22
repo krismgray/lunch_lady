@@ -1,4 +1,6 @@
 require 'pry'
+require 'colorize'
+
 @main_dish = [
 { dish:"Pizza", cost: 4.25 },
 { dish:"Chicken Nuggets", cost: 3.65 },
@@ -13,9 +15,10 @@ require 'pry'
 
 def main_menu
   @main_dish.each_with_index do |key, index|
-  puts "#{index + 1}. #{key[:dish]} = #{key[:cost]}"
+  puts "#{index + 1}. #{key[:dish]} = #{key[:cost]}".colorize(:green)
   end
-  puts "What will be your main dish?"
+  puts ""
+  puts "What will be your main dish?".colorize(:light_blue)
   input = gets.strip
   case input
     when '1'
@@ -31,9 +34,9 @@ def main_menu
 end
 
 def first_side_dish
-  puts "What would you like for your first side dish?"
+  puts "What would you like for your first side dish?".colorize(:cyan)
   @side_dish.each_with_index do |key, index|
-    puts "#{index + 1}. #{key[:side]} = #{key[:cost]}"
+    puts "#{index + 1}. #{key[:side]} = #{key[:cost]}".colorize(:green)
     end
     input = gets.strip
     case input
@@ -50,9 +53,9 @@ def first_side_dish
 end
 
 def second_side_dish
-  puts "What would you like for your second side dish?"
+  puts "What would you like for your second side dish?".colorize(:yellow).on_blue
   @side_dish.each_with_index do |key, index|
-    puts "#{index + 1}. #{key[:side]} = #{key[:cost]}"
+    puts "#{index + 1}. #{key[:side]} = #{key[:cost]}".colorize(:green)
     end
     input = gets.strip
     case input
@@ -73,8 +76,19 @@ def order
   @order.each do |key|
     sum += key[:cost]
     end
-    puts "Your total is: $#{sum.round(2)}"
-    main_menu
+    puts "Your total is: $#{sum.round(2)}".colorize(:green)
+    puts ""
+    puts ""
+    puts "Would you like to order again?".colorize(:cyan)
+    puts "1: to order again"
+    puts "2: quit"
+    input = gets.strip
+    case input
+      when '1'
+        main_menu
+      when '2'
+        exit
+    end
 end
 
 main_menu
